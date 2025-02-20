@@ -1,9 +1,9 @@
 const darkPdfDivStyles = `
-    pointer-events: none;
-    width: 100vw;
-    height: 100vh;
-    mix-blend-mode: difference;
-    z-index: 1;
+	pointer-events: none;
+	width: 100vw;
+	height: 100vh;
+	mix-blend-mode: difference;
+	z-index: 1;
 `;
 
 const backgroundColours = ['#e6e6e6', '#cccccc', 'transparent'];
@@ -14,8 +14,8 @@ darkPdfDiv.style.cssText = darkPdfDivStyles + `background-color: ${backgroundCol
 document.body.appendChild(darkPdfDiv);
 
 chrome.runtime.onMessage.addListener(request => {
-    if (request.action === 'iconClicked') {
-        currentBackgroundColour = (currentBackgroundColour + 1) % backgroundColours.length;
-        darkPdfDiv.style.backgroundColor = backgroundColours[currentBackgroundColour];
-    }
+	if (request.action === 'iconClicked') {
+		currentBackgroundColour = (currentBackgroundColour + 1) % backgroundColours.length;
+		darkPdfDiv.style.backgroundColor = backgroundColours[currentBackgroundColour];
+	}
 });
