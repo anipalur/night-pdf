@@ -2,6 +2,10 @@
 
 This repository hosts the source code for the Night PDF extension, a simple Chrome extension that applies a dark theme to your PDF viewer.
 
+<p align="center">
+  <img src="res/cover-image.png" width="75%" alt="The GPLv3 logo." />
+</p>
+
 This extension is a fork of [PDF Dark Theme][pdf-dark-theme-link] by [Chris Straka][chris-straka-link] with some extra functionality, specifically:
 
 - Toggling between multiple dark themes
@@ -17,6 +21,7 @@ To customise the dark themes, simply modify the colours in the `backgroundColour
 
 - Thank you to [Chris Straka][chris-straka-link] for his original [PDF Dark Theme][pdf-dark-theme-link] extension!
 - Thank you to [Tabler Icons](https://tabler.io/icons "Learn more about Tabler Icons.") for the Night PDF icon!
+- Thank you to [File Examples](https://file-examples.com "Learn more about File Examples.") for the sample PDF shown in the cover image.
 
 ## Licences
 
