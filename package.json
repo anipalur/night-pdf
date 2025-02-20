@@ -1,0 +1,27 @@
+{
+  "name": "night-pdf",
+  "version": "1.0.0",
+  "description": "A simple Chrome extension that applies a dark theme to your PDF viewer.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anipalur/night-pdf.git"
+  },
+  "main": "content-script.js",
+  "keywords": [
+    "chrome-extension",
+    "edge-extension",
+    "browser-extension",
+    "browser-addon",
+    "accessibility"
+  ],
+  "author": {
+    "name": "anipalur",
+    "email": "ani@anipalur.com",
+    "url": "https://github.com/anipalur"
+  },
+  "license": "GPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/anipalur/night-pdf/issues"
+  },
+  "homepage": "https://github.com/anipalur/night-pdf#readme"
+}
