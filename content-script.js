@@ -7,7 +7,8 @@ const darkPdfDivStyles = `
 `;
 
 // Modify this array to customise the dark themes.
-const backgroundColours = ['#e6e6e6', '#cccccc', '#333333', '#1a1a1a', 'transparent'];
+const backgroundColours = ['#e6e6e6', '#cccccc', '#333333', '#1a1a1a'];
+backgroundColours.push('transparent');
 let currentBackgroundColour = 0;
 
 const darkPdfDiv = document.createElement('div');
@@ -20,7 +21,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 	if (request.action === 'iconClicked') {
 		currentBackgroundColour = (currentBackgroundColour + 1) % backgroundColours.length;
 		darkPdfDiv.style.backgroundColor = backgroundColours[currentBackgroundColour];
-		sendResponse({ text: `T${currentBackgroundColour + 1}` });
+		sendResponse({ text: ((currentBackgroundColour + 1) === backgroundColours.length) ? 'Off' : `T${currentBackgroundColour + 1}` });
 	} else if (request.action === 'enableDarkTheme') {
 		darkPdfDiv.style.display = 'block';
 	} else if (request.action === 'disableDarkTheme') {
