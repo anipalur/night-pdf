@@ -6,7 +6,8 @@ const darkPdfDivStyles = `
 	z-index: 1;
 `;
 
-const backgroundColours = ['#e6e6e6', '#cccccc', 'transparent'];
+// Modify this array to customise the dark themes.
+const backgroundColours = ['#e6e6e6', '#cccccc', '#333333', '#1a1a1a', 'transparent'];
 let currentBackgroundColour = 0;
 
 const darkPdfDiv = document.createElement('div');
@@ -14,6 +15,7 @@ darkPdfDiv.style.cssText = darkPdfDivStyles + `background-color: ${backgroundCol
 document.body.appendChild(darkPdfDiv);
 darkPdfDiv.style.display = 'none';
 
+// Enables the extension and applies a dark theme if the tab is a PDF, otherwise disables it.
 chrome.runtime.onMessage.addListener(request => {
 	if (request.action === 'iconClicked') {
 		currentBackgroundColour = (currentBackgroundColour + 1) % backgroundColours.length;
