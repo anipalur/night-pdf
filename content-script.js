@@ -16,10 +16,11 @@ document.body.appendChild(darkPdfDiv);
 darkPdfDiv.style.display = 'none';
 
 // Enables the extension and applies a dark theme if the tab is a PDF, otherwise disables it.
-chrome.runtime.onMessage.addListener(request => {
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 	if (request.action === 'iconClicked') {
 		currentBackgroundColour = (currentBackgroundColour + 1) % backgroundColours.length;
 		darkPdfDiv.style.backgroundColor = backgroundColours[currentBackgroundColour];
+		sendResponse({ text: `T${currentBackgroundColour + 1}` });
 	} else if (request.action === 'enableDarkTheme') {
 		darkPdfDiv.style.display = 'block';
 	} else if (request.action === 'disableDarkTheme') {
