@@ -8,16 +8,32 @@ function updateBadge(tabId, text, backgroundColour) {
     chrome.action.setBadgeBackgroundColor({ color: backgroundColour });
 }
 
+function updateTitle(title) {
+    chrome.action.setTitle({ title });
+}
+
+function updateIcon(tabId, responseText) {
+	if (responseText === 'Off') {
+		updateBadge(tabId, responseText, '#FF0000');
+		updateTitle('Night PDF is off.');
+	} else {
+		updateBadge(tabId, `T${responseText}`, '#e6e6e6');
+		updateTitle(`Dark theme ${responseText} is currently active.`);
+	}
+}
+
 // Enables the extension if the tab is a PDF, otherwise disables it.
 function toggleExtension(tab, tabId) {
 	if (isPdfUrl(tab.url)) {
-		chrome.tabs.sendMessage(tabId, { action: 'enableDarkTheme' });
-		updateBadge(tabId, '', null);
-		chrome.action.setTitle({ title: 'Click to toggle dark mode!' })
+		chrome.tabs.sendMessage(tabId, { action: 'enableDarkTheme' }, response => {
+			if (response) {
+				updateIcon(tabId, response.text);
+			}
+		});
 	} else {
 		chrome.tabs.sendMessage(tabId, { action: 'disableDarkTheme' });
-		updateBadge(tabId, '✗', '#FF0000');
-		chrome.action.setTitle({ title: 'Night PDF is unavailable on this page.' })
+		updateBadge(tabId, 'Off', '#FF0000');
+		updateTitle('Night PDF is unavailable on this page.');
 	}
 }
 
@@ -28,8 +44,7 @@ chrome.action.onClicked.addListener(tab => {
 		const tabId = tab.id;
 		chrome.tabs.sendMessage(tabId, { action: 'iconClicked' }, response => {
 			if (response) {
-				updateBadge(tabId, response.text, '#00FF00');
-				setTimeout(() => { updateBadge(tabId, '', null); }, 500);
+				updateIcon(tabId, response.text);
 			}
 		});
 	}
