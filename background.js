@@ -1,14 +1,17 @@
-// Flashes a checkmark beside the extension's icon when clicked.
+// Flashes the dark theme number beside the extension's icon when clicked.
 chrome.action.onClicked.addListener(tab => {
-	const isPdf = tab.url?.endsWith('.pdf');
-	if (isPdf) {
-		chrome.tabs.sendMessage(tab.id, { action: 'iconClicked' });
-		chrome.action.setBadgeText({ text: '🗸', tabId: tab.id });
-		chrome.action.setBadgeBackgroundColor({ color: '#00FF00' });
-		setTimeout(() => {
-			chrome.action.setBadgeText({ text: '', tabId: tab.id });
-			chrome.action.setBadgeTextColor({ color: null });
-		}, 500);
+	if (tab.url?.endsWith('.pdf')) {
+		const tabId = tab.id;
+		chrome.tabs.sendMessage(tabId, { action: 'iconClicked' }, response => {
+			if (response) {
+				chrome.action.setBadgeText({ text: response.text, tabId: tabId });
+				chrome.action.setBadgeBackgroundColor({ color: '#00FF00' });
+				setTimeout(() => {
+					chrome.action.setBadgeText({ text: '', tabId: tabId });
+					chrome.action.setBadgeTextColor({ color: null });
+				}, 500);
+			}
+		});
 	}
 });
 
