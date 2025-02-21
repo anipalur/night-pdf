@@ -14,9 +14,9 @@ This extension is a fork of [PDF Dark Theme][pdf-dark-theme-link] by [Chris Stra
 ## Using and Customising the Extension
 
 To use the extension, [download and install the extension](https://dev.to/ben/how-to-install-chrome-extensions-manually-from-github-1612 "Learn how to download and install extensions from GitHub.")
-using Developer Mode (this extension is not available via the Chrome Web Store or other extension websites).
+using Developer Mode (this extension is not available via the Chrome Web Store or other extension websites). Refresh any open tabs after installing the extension.
 
-To customise the dark themes, simply modify the [colours in the `backgroundColours` array](https://github.com/anipalur/night-pdf/blob/7d86f591c2405b5ff59bddb5f698cc8973b7ab56/content-script.js#L10 "View the colours in the backgroundColours array.") in content-script.js.
+To customise the dark themes, simply modify the [colours in the `backgroundColours` array](https://github.com/anipalur/night-pdf/blob/main/content-script.js#L10 "View the colours in the backgroundColours array.") in content-script.js.
 
 ## Attribution
 
