@@ -1,3 +1,4 @@
+// Flashes a checkmark beside the extension's icon when clicked.
 chrome.action.onClicked.addListener(tab => {
 	const isPdf = tab.url?.endsWith('.pdf');
 	if (isPdf) {
@@ -11,6 +12,7 @@ chrome.action.onClicked.addListener(tab => {
 	}
 });
 
+// Enables the extension if the tab is a PDF, otherwise disables it.
 function toggleExtension(tab, tabId) {
 	const isPdf = tab.url.endsWith('.pdf');
 	if (isPdf) {
@@ -26,6 +28,7 @@ function toggleExtension(tab, tabId) {
 	}
 }
 
+// Listens for when the user navigates to a different tab.
 chrome.tabs.onActivated.addListener(activeInfo => {
 	currentTabId = activeInfo.tabId;
 	chrome.tabs.get(currentTabId, tab => {
@@ -35,6 +38,7 @@ chrome.tabs.onActivated.addListener(activeInfo => {
 	});
 });
 
+// Listens for when the user updates the current tab (e.g. clicking a link to a different website).
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 	if (changeInfo.status === 'complete' && tab.url) {
 		toggleExtension(tab, tabId);
